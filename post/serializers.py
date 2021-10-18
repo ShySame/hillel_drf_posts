@@ -14,12 +14,22 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class PostSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+    title = serializers.CharField(required=True)
+    date_create = serializers.DateField(read_only=True)
+    author = serializers.CharField(read_only=True)
+    text = serializers.CharField(required=True)
+
     class Meta:
         model = Post
-        fields = ['url', 'title', 'date_create', 'text', 'author']
+        fields = ['id', 'url', 'title', 'date_create', 'author', 'text']
 
 
 class CommentSerializer(serializers.HyperlinkedModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+    message = serializers.CharField(required=True)
+    date_create = serializers.DateTimeField(read_only=True)
+    author = serializers.CharField(read_only=True)
     class Meta:
         model = Comment
-        fields = ['url', 'message', 'date_create', 'author', 'post']
+        fields = ['id', 'url', 'message', 'date_create', 'author', 'post',]
