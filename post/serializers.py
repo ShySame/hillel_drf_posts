@@ -30,6 +30,7 @@ class CommentSerializer(serializers.HyperlinkedModelSerializer):
     message = serializers.CharField(required=True)
     date_create = serializers.DateTimeField(read_only=True)
     author = serializers.CharField(read_only=True)
+
     class Meta:
         model = Comment
-        fields = ['id', 'url', 'message', 'date_create', 'author', 'post',]
+        fields = ['id', 'url', 'message', 'date_create', 'author', 'post', ]
